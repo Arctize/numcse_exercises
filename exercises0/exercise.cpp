@@ -6,7 +6,9 @@
 // a) 32 bits two's complement
 //
 // b)
-void int_to_bits(int x)
+// Taking an unsigned int makes it possible to
+// print negative two's complement numbers aswell.
+void int_to_bits(unsigned int x)
 {
     if (x > 1)
 	int_to_bits(x >> 1);
@@ -54,6 +56,9 @@ double dbl_factorial(double d)
 int main(int argc, char* argv[])
 {
     int_to_bits(11);
+    printf("\n");
+
+    int_to_bits(-10);
     printf("\n");
 
     printf("%f\n", fast_power(2.5, 32));
