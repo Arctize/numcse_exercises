@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 // 0.1
 //
@@ -15,11 +15,12 @@ void int_to_bits(unsigned int x)
     printf("%i", x % 2);
 }
 
-void float_to_bits(float f){
-	float *fPtr = &f;
-	int *iPtr = (int *)fPtr;
-	int i = *iPtr;
-	int_to_bits(i);
+void float_to_bits(float f)
+{
+    float* fPtr = &f;
+    int* iPtr = (int*)fPtr;
+    int i = *iPtr;
+    int_to_bits(i);
 }
 
 // 0.2
@@ -33,7 +34,9 @@ double fast_power(double a, int b)
 	    return a * fast_power(a, b - 1);
 	else
 	    return fast_power(a * a, b / 2);
-    else // we assume b == 0
+    else if (b < 0)
+	return fast_power(1 / a, -b);
+    else
 	return 1;
 }
 
@@ -72,7 +75,9 @@ int main(int argc, char* argv[])
     printf("\n");
 
     printf("%f\n", fast_power(2.5, 32));
+    printf("%f\n", fast_power(10, -3));
     printf("%f\n", faster_power(2.5, 32));
+    printf("%f\n", faster_power(10, -3));
 
     printf("%i\n", factorial(6));
     printf("%f\n", dbl_factorial(6.4));
