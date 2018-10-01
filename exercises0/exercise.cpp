@@ -15,6 +15,13 @@ void int_to_bits(unsigned int x)
     printf("%i", x % 2);
 }
 
+void float_to_bits(float f){
+	float *fPtr = &f;
+	int *iPtr = (int *)fPtr;
+	int i = *iPtr;
+	int_to_bits(i);
+}
+
 // 0.2
 // b)
 double fast_power(double a, int b)
@@ -26,7 +33,7 @@ double fast_power(double a, int b)
 	    return a * fast_power(a, b - 1);
 	else
 	    return fast_power(a * a, b / 2);
-    else
+    else // we assume b == 0
 	return 1;
 }
 
@@ -59,6 +66,9 @@ int main(int argc, char* argv[])
     printf("\n");
 
     int_to_bits(-10);
+    printf("\n");
+
+    float_to_bits(-2.5);
     printf("\n");
 
     printf("%f\n", fast_power(2.5, 32));
