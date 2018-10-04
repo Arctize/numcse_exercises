@@ -1,5 +1,7 @@
 #include <math.h>
 #include <stdio.h>
+#include <cmath>
+#include <iostream>
 
 // 0.1
 //
@@ -24,6 +26,18 @@ void float_to_bits(float f)
 }
 
 // 0.2
+// a)
+double power(double a, int b)
+{
+    if (b < 0)
+	return power(1 / a, -b);
+    double result = a;
+    for (int i = 0; i < b - 1; i++) {
+	result *= a;
+    }
+    return result;
+}
+
 // b)
 double fast_power(double a, int b)
 {
@@ -48,6 +62,8 @@ double faster_power(double a, int b)
 
 // 0.3
 // a)
+
+// Starts overflowing at 13 (integers)
 template <typename T>
 T factorial(T n)
 {
@@ -58,9 +74,10 @@ T factorial(T n)
 }
 
 // b)
-double dbl_factorial(double d)
+template <typename T>
+double dbl_factorial(T n)
 {
-    return factorial(round(d));
+    return factorial(round(n));
 }
 
 int main(int argc, char* argv[])
@@ -74,12 +91,15 @@ int main(int argc, char* argv[])
     float_to_bits(-2.5);
     printf("\n");
 
+    printf("%f\n", power(2.5, 32));
     printf("%f\n", fast_power(2.5, 32));
     printf("%f\n", fast_power(10, -3));
     printf("%f\n", faster_power(2.5, 32));
     printf("%f\n", faster_power(10, -3));
 
+
     printf("%i\n", factorial(6));
     printf("%f\n", dbl_factorial(6.4));
+    printf("%f\n", dbl_factorial(60));
     return 0;
 }
